@@ -140,7 +140,7 @@ Here we calculate column means over data frame:
 map_dbl(tb, mean)
 ```
 
-> Previous code could be replaced by dplyr summarise functions or base R colSums(), at least when input is a data frame.
+> Previous code could be replaced by dplyr summarise functions or base R colMeans(), at least when input is a data frame.
 
 ## There are differences between map_*() and colSums()
 
@@ -245,7 +245,7 @@ models %>%
 
 ## map Exercises
 
-See: [https://purrr.tidyverse.org/reference/map.html#ref-examples](https://purrr.tidyverse.org/reference/map.html#ref-examples)
+See: [https://r4ds.had.co.nz/iteration.html#exercises-58](https://r4ds.had.co.nz/iteration.html#exercises-58)
 
 
 ## Dealing with failure
