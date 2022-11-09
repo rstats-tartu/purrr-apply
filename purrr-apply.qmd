@@ -1,0 +1,97 @@
+---
+title: "purrr-apply"
+subtitle: "LOTI.02.015 Reprodutseeritav andmeanalüüs R-keeles"
+author: "Taavi Päll"
+date: "2022-11-09"
+format:
+  revealjs: 
+    theme: [serif]
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Iterators -- Apply a Function over a List or Vector
+
+- Iterator is "an object that enables a programmer to traverse a container".^[Wikipedia:  [https://en.wikipedia.org/wiki/Iterator](https://en.wikipedia.org/wiki/Iterator)]
+- A collection of items (stashed in a container) can be thought of as being "iterable" (R sense container == vector, list).
+
+:::aside
+Source: 
+:::
+
+## Getting help
+
+E.g. lapply/apply help can be accessed in R as usually from console:
+```{r, eval=FALSE}
+?apply
+```
+Or type in RStudio Help tab "apply"
+
+## Essential part of iteraton is a function
+
+Functions reduce duplication by identifying repeated patterns of code and extract them out into independent pieces that can be easily reused and updated.
+
+Functions are defined in R like so (we also give it a name): 
+```{r}
+plos_one <- function(x) {
+  x + 1
+}
+```
+
+
+:::aside
+Source: R for Data Science (R4DS), [https://r4ds.had.co.nz/iteration.html](https://r4ds.had.co.nz/iteration.html).
+:::
+
+
+## Why are functions important?
+
+- It's easier to see the intent of your code, because your eyes are drawn to what's different, not what stays the same.
+- It's easier to respond to changes in requirements. As your needs change, you only need to make changes in one place, rather than remembering to change every place that you copied-and-pasted the code.
+- You're likely to have fewer bugs because each line of code is used in more places.
+
+:::aside
+Source: R for Data Science (R4DS), [https://r4ds.had.co.nz/iteration.html](https://r4ds.had.co.nz/iteration.html).
+:::
+
+## For loops
+
+See: [https://r4ds.had.co.nz/iteration.html#for-loops](https://r4ds.had.co.nz/iteration.html#for-loops)
+
+```{r, eval=FALSE}
+output <- vector("double", ncol(df))  # 1. output
+for (i in seq_along(df)) {            # 2. sequence
+  output[[i]] <- median(df[[i]])      # 3. body
+}
+output
+#> [1] -0.24576245 -0.28730721 -0.05669771  0.14426335
+```
+
+
+##  For loop variations {.smaller}
+
+There are four variations on the basic theme of the for loop:
+
+1. Modifying an existing object, instead of creating a new object.
+2. Looping over values or names, instead of indices `for (v in x)` or `for (n in names(x))` vs. `for (i in seq_along(x))`.
+3. Handling outputs of unknown length -- loop first, deal with output later.
+4. Handling sequences of unknown length (`while`).
+
+:::aside
+Source: R for Data Science (R4DS), [https://r4ds.had.co.nz/iteration.html#for-loop-variations](https://r4ds.had.co.nz/iteration.html#for-loop-variations).
+:::
+
+
+## Functionals to replace for loops
+
+- In R it’s possible and much advisable to wrap up for loops in a function, and call that function instead of using the for loop directly
+
+## purrr and base R apply
+
+- In base R, the apply family of functions (`apply()`, `lapply()`, `sapply()`, etc) allow to loop through objects.
+- With more consistent API, Tidyverse **purrr** package provides functions that eliminate the need for many common for loops. 
+
+
+
